@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+<!-- 
+	List<Type> selectAllType();
+	
+	Integer deleteType(Integer tid);
+	
+	Integer updateType(Type type);
+	
+	Integer insertType(String name);
+ -->
+<mapper namespace="com.test.dao.TypeMapper">
+
+    <select id="selectAllType" resultType="com.test.entity.Type">
+       select * from type
+    </select>
+	
+	<delete id="deleteType">
+        delete from type where tid = #{tid}
+    </delete>
+	
+	<update id="updateType" parameterType="com.test.entity.Type">
+		update type set tname = #{tname} where tid = #{tid}
+	</update>
+	
+	<insert id="insertType">
+		insert into type(tname) values(#{tname})
+	</insert>
+	
+	<select id="getTypeByTid" resultType="com.test.entity.Type">
+       select * from type where tid = #{tid}
+    </select>
+	
+</mapper>

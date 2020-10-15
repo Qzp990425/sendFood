@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.test.dao.FoodMapper">
+
+	<select id="getAllFood" resultType="com.test.entity.Food">
+		select * from Food
+	</select>
+	
+	<select id="getFoodByType" resultType="com.test.entity.Food">
+		select * from Food where type = #{type}
+	</select>
+	  
+	
+	<select id="getFoodOnSale" resultType="com.test.entity.Food">
+		select * from Food where status = 0
+	</select>
+	
+	<select id="getFoodOnSaleByType" resultType="com.test.entity.Food">
+		select * from Food where status = 0 and type = #{type}
+	</select> 
+	
+	<insert id="insertFood" parameterType="com.test.entity.Food">
+		insert into Food(uuid,name,price,type,number,nowPrice,status,introduction) values(#{uuid},#{name},#{price},#{type},#{number},#{nowPrice},#{status},#{introduction})
+	</insert>
+	
+	<update id="putFood">
+		update Food set status = 1 where fid = #{fid}
+	</update>
+	
+	<update id="pushFood">
+		update Food set status = 0 where fid = #{fid}
+	</update>
+	
+	<select id="getFoodByFid" resultType="com.test.entity.Food">
+		select * from Food where fid = #{fid}
+	</select>
+	
+	<select id="getFoodByName" resultType="com.test.entity.Food">
+		select * from Food where name like '%${value}%'
+	</select>
+	
+	<update id="updateNum" parameterType="com.test.entity.Food">
+		update Food set number = #{number} where fid = #{fid}
+	</update>
+	
+	<select id="getAllFoodOfMe" resultType="com.test.entity.Food">
+		select * from Food where fid = #{fid}
+	</select>
+	
+	<select id="getFoodByTypeOfMe" resultType="com.test.entity.Food">
+		select * from Food where type = #{param1} and uid = #{param2}
+	</select>
+	
+	<update id="updateFood"  parameterType="com.test.entity.Food">
+		update food set price=#{price},name=#{name},type=#{type},nowPrice=#{nowPrice},number=#{number},introduction=#{introduction} where fid = #{fid}
+	</update>
+</mapper>

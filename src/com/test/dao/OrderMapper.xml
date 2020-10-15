@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.test.dao.OrderMapper">
+	<insert id="insertOrder" parameterType="java.util.List">
+		insert into orderRecord(uuid,status,fid,number,createTime,buyId,name) values
+		<foreach collection="list" item="orderRecord" separator=","> 
+        (#{orderRecord.uuid},#{orderRecord.status},#{orderRecord.fid},#{orderRecord.number},#{orderRecord.createTime},#{orderRecord.buyId},#{orderRecord.name})
+   		 </foreach>
+	</insert>
+	
+	<insert id="insertOrderOne" parameterType="com.test.entity.OrderRecord">
+		insert into orderRecord(uuid,status,fid,number,createTime,buyId,name) values
+        (#{uuid},#{status},#{fid},#{number},#{createTime},#{buyId},#{name})
+	</insert>
+	
+	
+	<select id="getOrderByUid" parameterType="com.test.entity.User" resultType="com.test.entity.OrderRecord">
+		select * from orderRecord where buyId = #{uid}
+	</select>
+	
+	<update id="updateOrderStatusToOne" parameterType="com.test.entity.OrderRecord">
+		update orderRecord set status = 1 , sendTime=#{sendTime} where oid = #{oid}
+	</update>
+	
+	<update id="updateOrderStatusToTwo" parameterType="com.test.entity.OrderRecord">
+		update orderRecord set status = 2 , doneTime=#{doneTime} where oid = #{oid}
+	</update>
+	
+	<select id="getAllOrder" resultType="com.test.entity.OrderRecord">
+		select * from orderRecord
+	</select>
+	
+	<select id="getOrderByType" resultType="com.test.entity.OrderRecord">
+		select * from orderRecord where status = #{status}
+	</select>
+</mapper>

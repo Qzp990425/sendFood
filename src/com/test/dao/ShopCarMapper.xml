@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.test.dao.ShopCarMapper">
+	
+	<insert id="addFood" parameterType="com.test.entity.ShopCar">
+		insert into shopCar(uid,fid,number) values(#{uid},#{fid},#{number})
+	</insert>
+	
+	<select id="getShopCar" parameterType="com.test.entity.User" resultType="com.test.entity.ShopCar">
+		select * from shopCar where uid = #{uid}
+	</select>
+	
+	<delete id="deleteShopCarBySid">
+		delete from shopCar where sid = #{sid}
+	</delete>
+	
+	<update id="updateNum" parameterType="com.test.entity.ShopCar">
+		update shopCar set number = #{number} where sid = #{sid}
+	</update>
+	
+	<delete id="deleteShopCar" parameterType="int">
+		delete from shopCar where 1 > 2 or sid in 
+		<foreach collection="array" item="item" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+</mapper>

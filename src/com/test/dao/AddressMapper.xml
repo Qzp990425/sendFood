@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.test.dao.AddressMapper">
+	<select id="getAddressByUid" resultType="com.test.entity.Address">
+		select * from address where uid = #{uid}
+	</select>
+	
+	<delete id="deleteAddress">
+		delete from address where aid = #{aid}
+	</delete>
+	  
+	<insert id="addAddress" parameterType="com.test.entity.Address">
+		insert into address(uid,name) values(#{uid},#{name})
+	</insert>
+	
+	<update id="updateAddress" parameterType="com.test.entity.Address">
+		update address set name = #{name} where aid = #{aid}
+	</update>
+	
+	<select id="getAddressById" resultType="com.test.entity.Address">
+		select * from address where aid = #{aid}
+	</select>
+</mapper>

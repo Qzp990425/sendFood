@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+<mapper namespace="com.test.dao.AdminMapper">
+
+    <select id="getAdminByUsername" parameterType="com.test.entity.Admin" resultType="com.test.entity.Admin">
+        select * from admin where username = #{username}
+    </select>
+	
+	<select id="getAdmin" resultType="com.test.entity.Admin">
+        select * from admin 
+    </select>
+    
+    <select id="getAdminById" resultType="com.test.entity.Admin">
+        select * from admin where id = #{id}
+    </select>
+    
+    <insert id="addAdmin" parameterType="com.test.entity.Admin">
+    	insert into admin(username,password) values(#{username},#{password})
+    </insert>
+    
+    <delete id="deleteAdmin">
+    	delete from admin where id = #{id}
+    </delete>
+    
+    <update id="updateAdmin" parameterType="com.test.entity.Admin">
+    	update admin set password = #{password} where id = #{id}
+    </update>
+</mapper>
